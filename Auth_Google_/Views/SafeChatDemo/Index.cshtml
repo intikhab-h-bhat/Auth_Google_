@@ -1,4 +1,5 @@
 ﻿@model string
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -6,7 +7,7 @@
 @* <h1>Index</h1> *@
 
 
-
+<form method="post">
 <div class="border p-3 mt-4">
     <div class"row pb-2">
         <h2 class="text-primary">SafeChat</h2> 
@@ -15,13 +16,13 @@
     <div class="mb-3">
         <h4 class="text-primary">
             <label class="p-0">Ask Your Question</label></h4>
-        <input type="text" id="question" class="form-control" />
+            <input type="text" id="askquestion" name="askquestion" required class="form-control" />
 
     </div>
   
-        <a asp-controller="SafeChatDemo" asp-action="Index" class="btn btn-primary form-control">
+        <button type="submit" asp-controller="SafeChatDemo" asp-action="Index" class="btn btn-primary form-control">
             <i class="bi bi-plus-circle"></i> Send
-        </a>
+        </button>
 
     
     
@@ -44,4 +45,5 @@
     
 
 </div>
+</form>
 
