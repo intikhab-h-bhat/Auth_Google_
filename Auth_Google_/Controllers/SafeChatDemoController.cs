@@ -22,6 +22,18 @@ namespace Auth_Google.Controllers
 
         [HttpGet]
         [Authorize]
+        public IActionResult AskQuestion()
+        {
+
+
+            return View(nameof(Index));
+
+        }
+
+
+
+        [HttpGet]
+        [Authorize]
         public IActionResult Index()
         {
            string answer = string.Empty;
