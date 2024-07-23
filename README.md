@@ -3,4 +3,5 @@
 2. Added Google Authentication.
 3. Used this WEB APP to consume WEB API
    * Azure ContentSafety API
+   * Azure OPEN AI
    
