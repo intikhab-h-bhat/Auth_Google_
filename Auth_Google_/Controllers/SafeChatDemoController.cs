@@ -39,9 +39,10 @@ namespace Auth_Google.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Index(string askquestion)
+        public IActionResult Index(string askquestion,string respAnswer)
 
         {
+            respAnswer=string.Empty;
             string answer = string.Empty;
             string question = askquestion; //"I will Kill You";
            // List<string> message = new List<string>();
