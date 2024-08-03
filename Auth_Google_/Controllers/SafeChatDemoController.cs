@@ -1,4 +1,5 @@
 ﻿using Auth_Google.Models;
+using Azure.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
@@ -9,7 +10,8 @@ namespace Auth_Google.Controllers
     public class SafeChatDemoController : Controller
     {
         Uri baseAddress = new Uri("https://localhost:7214/api");
-
+        //Uri baseAddress = new Uri("https://safechatapi.azurewebsites.net/api");
+        
         private readonly HttpClient _httpClient;
 
         public SafeChatDemoController()
@@ -17,6 +19,8 @@ namespace Auth_Google.Controllers
             _httpClient = new HttpClient();
 
             _httpClient.BaseAddress = baseAddress;
+           
+            
 
         }
 
@@ -31,11 +35,11 @@ namespace Auth_Google.Controllers
 
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View(new AnswerViewModel());
-        }
+        //[HttpGet]
+        //public IActionResult Index()
+        //{
+        //    return View(new AnswerViewModel());
+        //}
 
         [HttpPost]
         [Authorize]
@@ -45,10 +49,12 @@ namespace Auth_Google.Controllers
             respAnswer=string.Empty;
             string answer = string.Empty;
             string question = askquestion; //"I will Kill You";
-           // List<string> message = new List<string>();
-            //StringContent content=new StringContent(question);
+                                           // List<string> message = new List<string>();
+                                           //StringContent content=new StringContent(question);
 
             // List<AnswerViewModel> answerList = new List<AnswerViewModel>();
+            // Add the API key to the default request headers
+            _httpClient.DefaultRequestHeaders.Add("x-Api-Key", "F526D48AF3D94658886B6F7198FEF2DC");
 
             HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "/SafeChat/CheckSafety/" + question).Result;
             
@@ -61,6 +67,10 @@ namespace Auth_Google.Controllers
                // answerList = JsonConvert.DeserializeObject<List<AnswerViewModel>>(result);
                
 
+            }
+            else
+            {
+              answer = response.Content.ReadAsStringAsync().Result;
             }
             
             return View(nameof(Index), answer);
