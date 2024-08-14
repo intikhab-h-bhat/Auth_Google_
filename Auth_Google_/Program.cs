@@ -6,6 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 var configuration= builder.Configuration;
 
+
+builder.Services.AddApplicationInsightsTelemetry();
+
 builder.Services.AddAuthentication().AddGoogle(googleoptions =>
 {
     googleoptions.ClientId = configuration["Authentication:Google:ClientId"];
