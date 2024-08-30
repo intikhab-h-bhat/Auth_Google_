@@ -4,10 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddApplicationInsightsTelemetry();
+
 var configuration= builder.Configuration;
 
 
-builder.Services.AddApplicationInsightsTelemetry();
 
 builder.Services.AddAuthentication().AddGoogle(googleoptions =>
 {

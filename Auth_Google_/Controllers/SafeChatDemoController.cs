@@ -9,8 +9,8 @@ namespace Auth_Google.Controllers
 {
     public class SafeChatDemoController : Controller
     {
-        //Uri baseAddress = new Uri("https://localhost:7214/api");
-        Uri baseAddress = new Uri("https://safechatapi.azurewebsites.net/api");
+        Uri baseAddress = new Uri("https://localhost:7214/api");
+       // Uri baseAddress = new Uri("https://safechatapi.azurewebsites.net/api");
         
         private readonly HttpClient _httpClient;
 
