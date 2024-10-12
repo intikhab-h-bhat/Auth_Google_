@@ -9,9 +9,9 @@ namespace Auth_Google.Controllers
 {
     public class SafeChatDemoController : Controller
     {
-        Uri baseAddress = new Uri("https://localhost:7214/api");
-       // Uri baseAddress = new Uri("https://safechatapi.azurewebsites.net/api");
-        
+        //Uri baseAddress = new Uri("https://localhost:7214/api");
+        Uri baseAddress = new Uri("https://safechatapi.azurewebsites.net/api");
+      
         private readonly HttpClient _httpClient;
 
         public SafeChatDemoController()
@@ -43,8 +43,8 @@ namespace Auth_Google.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult Index(string askquestion,string respAnswer,string secureKey)
-
+        //public IActionResult Index(string askquestion,string respAnswer,string secureKey)
+        public IActionResult Index(string askquestion, string respAnswer)
         {
             respAnswer=string.Empty;
             string answer = string.Empty;
@@ -54,8 +54,8 @@ namespace Auth_Google.Controllers
 
             // List<AnswerViewModel> answerList = new List<AnswerViewModel>();
             // Add the API key to the default request headers
-            // _httpClient.DefaultRequestHeaders.Add("x-Api-Key", "F526D48AF3D94658886B6F7198FEF2DC");
-            _httpClient.DefaultRequestHeaders.Add("x-Api-Key", secureKey);
+            _httpClient.DefaultRequestHeaders.Add("x-Api-Key", "F526D48AF3D94658886B6F7198FEF2DC");
+           // _httpClient.DefaultRequestHeaders.Add("x-Api-Key", secureKey);
 
             HttpResponseMessage response = _httpClient.GetAsync(_httpClient.BaseAddress + "/SafeChat/CheckSafety/" + question).Result;
             
